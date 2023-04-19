@@ -2,11 +2,11 @@
 - hosts: localhost
   vars:
     ansible_python_interpreter: /bin/python3
-    vcenter_hostname: "192.168.3.10"
-    vcenter_username: "administrator@vsphere.reca2"
+    vcenter_hostname: "172.16.1.10"
+    vcenter_username: "administrator@vsphere.reca3"
     vcenter_password: "VMware1!"
     datacenter_name: "Datacenter"
-    iac_template: "Temp-IaC-ESXi-01"
+    iac_template: "Win-IaC"
 
   tasks:
   - name: Deploy IaC VM from Template
@@ -23,32 +23,29 @@
       datastore: "{{ item.datastore }}"
       template: "{{ iac_template }}"
     with_items:
-    - { vmname: S00-IaC, folder: 3.Students/S00, esxi: esxi-05.vclass.reca2, datastore: ESXi-05 }  
-    - { vmname: S01-IaC, folder: 3.Students/S01, esxi: esxi-01.vclass.reca2, datastore: ESXi-01 }  
-    - { vmname: S02-IaC, folder: 3.Students/S02, esxi: esxi-02.vclass.reca2, datastore: ESXi-02 }  
-    - { vmname: S03-IaC, folder: 3.Students/S03, esxi: esxi-03.vclass.reca2, datastore: ESXi-03 }  
-    - { vmname: S04-IaC, folder: 3.Students/S04, esxi: esxi-04.vclass.reca2, datastore: ESXi-04 }  
-    - { vmname: S05-IaC, folder: 3.Students/S05, esxi: esxi-05.vclass.reca2, datastore: ESXi-05 }  
-    - { vmname: S06-IaC, folder: 3.Students/S06, esxi: esxi-01.vclass.reca2, datastore: ESXi-01 }  
-    - { vmname: S07-IaC, folder: 3.Students/S07, esxi: esxi-02.vclass.reca2, datastore: ESXi-02 }  
-    - { vmname: S08-IaC, folder: 3.Students/S08, esxi: esxi-03.vclass.reca2, datastore: ESXi-03 }  
-    - { vmname: S09-IaC, folder: 3.Students/S09, esxi: esxi-04.vclass.reca2, datastore: ESXi-04 }  
-    - { vmname: S10-IaC, folder: 3.Students/S10, esxi: esxi-05.vclass.reca2, datastore: ESXi-05 }  
-    - { vmname: S11-IaC, folder: 3.Students/S11, esxi: esxi-01.vclass.reca2, datastore: ESXi-01 }  
-    - { vmname: S12-IaC, folder: 3.Students/S12, esxi: esxi-02.vclass.reca2, datastore: ESXi-02 }  
-    - { vmname: S13-IaC, folder: 3.Students/S13, esxi: esxi-03.vclass.reca2, datastore: ESXi-03 }  
-    - { vmname: S14-IaC, folder: 3.Students/S14, esxi: esxi-04.vclass.reca2, datastore: ESXi-04 }  
-    - { vmname: S15-IaC, folder: 3.Students/S15, esxi: esxi-05.vclass.reca2, datastore: ESXi-05 }  
-    - { vmname: S16-IaC, folder: 3.Students/S16, esxi: esxi-01.vclass.reca2, datastore: ESXi-01 }  
-    - { vmname: S17-IaC, folder: 3.Students/S17, esxi: esxi-02.vclass.reca2, datastore: ESXi-02 }  
-    - { vmname: S18-IaC, folder: 3.Students/S18, esxi: esxi-03.vclass.reca2, datastore: ESXi-03 }  
-    - { vmname: S19-IaC, folder: 3.Students/S19, esxi: esxi-04.vclass.reca2, datastore: ESXi-04 }  
-    - { vmname: S20-IaC, folder: 3.Students/S20, esxi: esxi-05.vclass.reca2, datastore: ESXi-05 }  
-    - { vmname: S21-IaC, folder: 3.Students/S21, esxi: esxi-01.vclass.reca2, datastore: ESXi-01 }  
-    - { vmname: S22-IaC, folder: 3.Students/S22, esxi: esxi-02.vclass.reca2, datastore: ESXi-02 }  
-#    - { vmname: S23-IaC, folder: S23, esxi: esxi-03.vclass.reca2, datastore: ESXi-03 }  
-#    - { vmname: S24-IaC, folder: S24, esxi: esxi-04.vclass.reca2, datastore: ESXi-04 }  
-#    - { vmname: S25-IaC, folder: S25, esxi: esxi-05.vclass.reca2, datastore: ESXi-05 }  
+    - { vmname: R3-S00-IaC, folder: 3.Students/R3-S00, esxi: esxi-05.vclass.reca3, datastore: R3-ESXi-05 }  
+    - { vmname: R3-S01-IaC, folder: 3.Students/R3-S01, esxi: esxi-01.vclass.reca3, datastore: R3-ESXi-01 }  
+    - { vmname: R3-S02-IaC, folder: 3.Students/R3-S02, esxi: esxi-02.vclass.reca3, datastore: R3-ESXi-02 }  
+    - { vmname: R3-S03-IaC, folder: 3.Students/R3-S03, esxi: esxi-03.vclass.reca3, datastore: R3-ESXi-03 }  
+    - { vmname: R3-S04-IaC, folder: 3.Students/R3-S04, esxi: esxi-04.vclass.reca3, datastore: R3-ESXi-04 }  
+    - { vmname: R3-S05-IaC, folder: 3.Students/R3-S05, esxi: esxi-05.vclass.reca3, datastore: R3-ESXi-05 }  
+    - { vmname: R3-S06-IaC, folder: 3.Students/R3-S06, esxi: esxi-01.vclass.reca3, datastore: R3-ESXi-01 }  
+    - { vmname: R3-S07-IaC, folder: 3.Students/R3-S07, esxi: esxi-02.vclass.reca3, datastore: R3-ESXi-02 }  
+    - { vmname: R3-S08-IaC, folder: 3.Students/R3-S08, esxi: esxi-03.vclass.reca3, datastore: R3-ESXi-03 }  
+    - { vmname: R3-S09-IaC, folder: 3.Students/R3-S09, esxi: esxi-04.vclass.reca3, datastore: R3-ESXi-04 }  
+    - { vmname: R3-S10-IaC, folder: 3.Students/R3-S10, esxi: esxi-05.vclass.reca3, datastore: R3-ESXi-05 }  
+    - { vmname: R3-S11-IaC, folder: 3.Students/R3-S11, esxi: esxi-01.vclass.reca3, datastore: R3-ESXi-01 }  
+    - { vmname: R3-S12-IaC, folder: 3.Students/R3-S12, esxi: esxi-02.vclass.reca3, datastore: R3-ESXi-02 }  
+    - { vmname: R3-S13-IaC, folder: 3.Students/R3-S13, esxi: esxi-03.vclass.reca3, datastore: R3-ESXi-03 }  
+    - { vmname: R3-S14-IaC, folder: 3.Students/R3-S14, esxi: esxi-04.vclass.reca3, datastore: R3-ESXi-04 }  
+    - { vmname: R3-S15-IaC, folder: 3.Students/R3-S15, esxi: esxi-05.vclass.reca3, datastore: R3-ESXi-05 }  
+    - { vmname: R3-S16-IaC, folder: 3.Students/R3-S16, esxi: esxi-01.vclass.reca3, datastore: R3-ESXi-01 }  
+    - { vmname: R3-S17-IaC, folder: 3.Students/R3-S17, esxi: esxi-02.vclass.reca3, datastore: R3-ESXi-02 }  
+    - { vmname: R3-S18-IaC, folder: 3.Students/R3-S18, esxi: esxi-03.vclass.reca3, datastore: R3-ESXi-03 }  
+    - { vmname: R3-S19-IaC, folder: 3.Students/R3-S19, esxi: esxi-04.vclass.reca3, datastore: R3-ESXi-04 }  
+    - { vmname: R3-S20-IaC, folder: 3.Students/R3-S20, esxi: esxi-05.vclass.reca3, datastore: R3-ESXi-05 }  
+    - { vmname: R3-S21-IaC, folder: 3.Students/R3-S21, esxi: esxi-01.vclass.reca3, datastore: R3-ESXi-01 }  
+    - { vmname: R3-S22-IaC, folder: 3.Students/R3-S22, esxi: esxi-02.vclass.reca3, datastore: R3-ESXi-02 }  
     delegate_to: localhost
     ignore_errors: yes     
 
