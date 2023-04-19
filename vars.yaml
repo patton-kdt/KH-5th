@@ -1,32 +1,32 @@
 ansible_python_interpreter: /bin/python3
 
-student_ID: "S00"
+student_ID: "R3-S00"
 
-vcenter_hostname: "192.168.3.10"
-vcenter_username: "S00@vclass.reca2"
+vcenter_hostname: "172.16.1.10"
+vcenter_username: "S00@vclass.reca3"
 vcenter_password: "VMware1!"
 
 datacenter_name: "Datacenter"
 
-folder_prefix: "Datacenter/vm/3.Students/"
+folder_prefix: "Datacenter/vm/RECA#3/3.Students/"
 
-# S01, S06, S11, S16, S21 --> esxi_host : 192.168.3.11
-# S02, S07, S12, S17, S22 --> esxi_host : 192.168.3.12
-# S03, S08, S13, S18, S23 --> esxi_host : 192.168.3.13
-# S04, S09, S14, S19, S24 --> esxi_host : 192.168.3.14
-# S00, S05, S10, S15, S20 --> esxi_host : 192.168.3.15
+# S01, S06, S11, S16, S21 --> esxi_host : esxi-01.vclass.reca3
+# S02, S07, S12, S17, S22 --> esxi_host : esxi-02.vclass.reca3
+# S03, S08, S13, S18, S23 --> esxi_host : esxi-03.vclass.reca3
+# S04, S09, S14, S19, S24 --> esxi_host : esxi-04.vclass.reca3
+# S00, S05, S10, S15, S20 --> esxi_host : esxi-05.vclass.reca3
 
-esxi_hostname: "192.168.3.15"
+esxi_hostname: "esxi-05.vclass.reca3"
 esxi_password: "VMware1!"
 esxi_username: "root"
 
-public_net: "VM-192.168.3.x"
+public_net: "VM-172.16.1.x"
 private_net: "{{ student_ID + '-Trunk' }}"
 
-datastore_name: "ESXi-05"
+datastore_name: "R3-ESXi-05"
 
 dc_template_name: "Temp-WinSvr2019-ESXi-05"
-dc_snapshot_src_name: "RECA#2"
+dc_snapshot_src_name: "RECA#3"
 
 esxi_template_name: "Temp-ESXi-05"
 
