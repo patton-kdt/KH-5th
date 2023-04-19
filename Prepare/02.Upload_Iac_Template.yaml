@@ -3,12 +3,12 @@
 
   vars:
     ansible_python_interpreter: /bin/python3
-    vcenter_hostname: "192.168.3.10"
-    vcenter_username: "administrator@vsphere.reca2"
+    vcenter_hostname: "172.16.1.10"
+    vcenter_username: "administrator@vsphere.reca3"
     vcenter_password: "VMware1!"
     datacenter_name: "Datacenter"  
     esxi_hostname: "esxi-01.vclass.reca2"
-    datastore_name: "ESXi-01"
+    datastore_name: "R3-ESXi-01"
   
   tasks: 
     - name: Import IaC Template VM
@@ -18,11 +18,11 @@
           password: '{{ vcenter_password }}'
           validate_certs: 'false'
           datacenter: '{{ datacenter_name }}'
-          folder: "/Datacenter/vm/2.Templates/"
+          folder: "/Datacenter/vm/RECA#3/2.Templates/"
           esxi_hostname: '{{ esxi_hostname }}'
           datastore: '{{ datastore_name }}'
-          name: "Temp-IaC-ESXi-01"
-          networks: { "VM Network": "VM-192.168.3.x" }
+          name: "Win-IaC"
+          networks: { "VM Network": "VM-172.16.1.x" }
           power_on: no
           ovf: /mnt/c/Material/Temp-Iac-ESXi-01.ova    
       delegate_to: localhost
