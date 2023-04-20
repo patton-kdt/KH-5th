@@ -3,74 +3,71 @@
   vars_files: ./vars.yaml
 
   tasks: 
-  - name: Clone multiple esxi vms from Template
-    community.vmware.vmware_guest:
-      hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
-      validate_certs: no
-      name: "{{ item }}"
-      state: "poweredoff"
-      datacenter: '{{ datacenter_name }}'
-      folder: "{{ folder_prefix + student_ID }}"
-      esxi_hostname: '{{ esxi_hostname }}'
-      datastore: "{{ datastore_name }}"
-      template: "{{ esxi_template_name }}"
-    loop:
-      - "{{student_ID+'-SA-ESXi-01'}}"
-      - "{{student_ID+'-SA-ESXi-02'}}"
-      - "{{student_ID+'-SA-ESXi-03'}}"
-    delegate_to: localhost
-
-
-# https://stackoverflow.com/questions/59626587/how-to-change-vmware-network-adapter-with-ansible
-  - name: Adding ESXi VMs Network Interfaces - Mgmt
-    community.vmware.vmware_guest_network:
-      hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
-      validate_certs: no
-      name: "{{ item[0] }}"
-      label: "{{ item[1] }}"
-      network_name: "{{ student_ID + '-SA-Mgmt' }}"
-      state: present
-      force: yes
-    with_nested:
-      - [ "{{student_ID+'-SA-ESXi-01'}}", "{{student_ID+'-SA-ESXi-02'}}", "{{student_ID+'-SA-ESXi-03'}}" ]
-      - [ "Network adapter 1", "Network adapter 2" ]
-    delegate_to: localhost
-
-# https://stackoverflow.com/questions/59626587/how-to-change-vmware-network-adapter-with-ansible
-  - name: Adding ESXi VMs Network Interfaces - Trunk
-    community.vmware.vmware_guest_network:
-      hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
-      validate_certs: no
-      name: "{{ item[0] }}"
-      label: "{{ item[1] }}"
-      network_name: "{{ student_ID + '-Trunk' }}"
-      state: present
-      force: yes
-    with_nested:
-      - [ "{{student_ID+'-SA-ESXi-01'}}", "{{student_ID+'-SA-ESXi-02'}}", "{{student_ID+'-SA-ESXi-03'}}" ]
-      - [ "Network adapter 3", "Network adapter 4" ]
-    delegate_to: localhost
-
-
-
-# https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_module.html
-  - name: Power on ESXi VMs
-    community.vmware.vmware_guest:
-      hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
-      validate_certs: no
-      name: "{{ item }}"
-      state: "poweredon"
-    loop:
-      - "{{student_ID+'-SA-ESXi-01'}}"
-      - "{{student_ID+'-SA-ESXi-02'}}"
-      - "{{student_ID+'-SA-ESXi-03'}}"
-    delegate_to: localhost
-  
+    - name: Create ESXi VMs
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: 'false'
+        datacenter: '{{datacenter_name}}'
+        folder: '{{ folder_prefix + student_ID }}'
+        name: '{{ item.vmname }}'
+        state: poweredoff
+        guest_id: vmkernel7Guest
+        esxi_hostname: "{{ esxi_hostname }}"
+        hardware:
+          num_cpus: 2
+          nested_virt: yes
+          memory_mb: 8192
+        disk:
+        - size_gb: 200
+          controller_type: 'paravirtual'
+          controller_number: 0
+          unit_number: 0
+          type: thin
+          datastore: '{{ datastore_name }}'
+        - size_gb: 50
+          controller_type: 'nvme'
+          controller_number: 0
+          unit_number: 0
+          type: thin
+          datastore: '{{ datastore_name }}'
+        - size_gb: 50
+          controller_type: 'nvme'
+          controller_number: 0
+          unit_number: 1
+          type: thin
+          datastore: '{{ datastore_name }}'
+        - size_gb: 200
+          controller_type: 'nvme'
+          controller_number: 0
+          unit_number: 2
+          type: thin
+          datastore: '{{ datastore_name }}'
+        - size_gb: 200
+          controller_type: 'nvme'
+          controller_number: 0
+          unit_number: 3
+          type: thin
+          datastore: '{{ datastore_name }}'
+        networks:
+        - name: "{{ student_ID + '-SA-Mgmt' }}"
+          device_type: vmxnet3
+        - name: "{{ student_ID + '-SA-Mgmt' }}"
+          device_type: vmxnet3
+        - name: "{{ student_ID + '-Trunk' }}"
+          device_type: vmxnet3
+        - name: "{{ student_ID + '-Trunk' }}"
+          device_type: vmxnet3
+        cdrom:
+        - controller_number: 0
+          unit_number: 0
+          state: present
+          type: iso
+          iso_path: '[R3-ESXi-05]\ISO\VMware-VMvisor-Installer-7.0U3l-21424296.x86_64.iso'
+      with_items:
+      - {vmname: "{{ student_ID + '-SA-ESXi-01' }}" }
+      - {vmname: "{{ student_ID + '-SA-ESXi-02' }}" }
+      - {vmname: "{{ student_ID + '-SA-ESXi-03' }}" }      
+      delegate_to: localhost
+      register: deploy_vm
