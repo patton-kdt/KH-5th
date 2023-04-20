@@ -26,7 +26,7 @@
         label: "Network adapter 1"
         connected: True
         start_connected: True
-        ip: 10.10.10.3
+        ip: 10.10.10.2
         netmask: 255.255.255.0
         gateway: 10.10.10.1
         dns_servers: 172.16.1.2
