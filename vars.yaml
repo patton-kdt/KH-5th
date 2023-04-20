@@ -25,7 +25,7 @@ private_net: "{{ student_ID + '-Trunk' }}"
 
 datastore_name: "R3-ESXi-05"
 
-dc_template_name: "Temp-WinSvr2019-ESXi-05"
+dc_template_name: "Temp-WinSvr2022-ESXi-05"
 dc_snapshot_src_name: "RECA#3"
 
 esxi_template_name: "Temp-ESXi-05"
