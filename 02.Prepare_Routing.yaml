@@ -79,7 +79,7 @@
             set interfaces ethernet eth0 description Outside
             set protocols static route 0.0.0.0/0 next-hop 172.16.1.1
             
-            set system name-server 172.16.1.1
+            set system name-server 172.16.1.2
             set system ntp server kr.pool.ntp.org
             
             set interfaces ethernet eth1 vif 10 description 'VLAN 10 - Site A Management'
