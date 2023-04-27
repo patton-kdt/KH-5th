@@ -13,7 +13,7 @@
         folder: '{{ folder_prefix + student_ID }}'
         name: "{{ student_ID + '-Storage' }}"
         state: poweredoff
-        guest_id: freebs13_64Guest
+        guest_id: freebsd13_64Guest
         esxi_hostname: "{{ esxi_hostname }}"
         hardware:
           num_cpus: 2
