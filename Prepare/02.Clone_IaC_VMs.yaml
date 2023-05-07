@@ -46,3 +46,4 @@
     - { student_id: S20, esxi: 200.200.200.250 , datastore: Local-05 }  
     - { student_id: S21, esxi: 200.200.200.246 , datastore: Local-01 }  
     delegate_to: localhost
+ 
