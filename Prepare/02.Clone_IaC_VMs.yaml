@@ -1,0 +1,48 @@
+---
+- hosts: localhost
+  vars:
+    ansible_python_interpreter: /bin/python3
+    vcenter_hostname: "200.200.200.251"
+    vcenter_username: "administrator@vsphere.kh"
+    vcenter_password: "VMware1!"
+    datacenter_name: "Datacenter"
+    iac_template: "Temp-IaC"
+
+  tasks:
+  - name: Deploy IaC VM from Template
+    community.vmware.vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ item.student_id + '-IaC' }}"
+      state: "poweredon"
+      datacenter: '{{ datacenter_name }}'
+      folder: "{{ '3.Students/' + item.student_id }}"
+      esxi_hostname: '{{ item.esxi }}'
+      datastore: "{{ item.datastore }}"
+      template: "{{ iac_template }}"
+    with_items:
+    - { student_id: S00, esxi: 200.200.200.250 , datastore: Local-05 }  
+    - { student_id: S01, esxi: 200.200.200.246 , datastore: Local-01 }  
+    - { student_id: S02, esxi: 200.200.200.247 , datastore: Local-02 }  
+    - { student_id: S03, esxi: 200.200.200.248 , datastore: Local-03 }  
+    - { student_id: S04, esxi: 200.200.200.249 , datastore: Local-04 }  
+    - { student_id: S05, esxi: 200.200.200.250 , datastore: Local-05 }  
+    - { student_id: S06, esxi: 200.200.200.246 , datastore: Local-01 }  
+    - { student_id: S07, esxi: 200.200.200.247 , datastore: Local-02 }  
+    - { student_id: S08, esxi: 200.200.200.248 , datastore: Local-03 }  
+    - { student_id: S09, esxi: 200.200.200.249 , datastore: Local-04 }  
+    - { student_id: S10, esxi: 200.200.200.250 , datastore: Local-05 }  
+    - { student_id: S11, esxi: 200.200.200.246 , datastore: Local-01 }  
+    - { student_id: S12, esxi: 200.200.200.247 , datastore: Local-02 }  
+    - { student_id: S13, esxi: 200.200.200.248 , datastore: Local-03 }  
+    - { student_id: S14, esxi: 200.200.200.249 , datastore: Local-04 }  
+    - { student_id: S15, esxi: 200.200.200.250 , datastore: Local-05 }  
+    - { student_id: S16, esxi: 200.200.200.246 , datastore: Local-01 }  
+    - { student_id: S17, esxi: 200.200.200.247 , datastore: Local-02 }  
+    - { student_id: S18, esxi: 200.200.200.248 , datastore: Local-03 }  
+    - { student_id: S19, esxi: 200.200.200.249 , datastore: Local-04 }  
+    - { student_id: S20, esxi: 200.200.200.250 , datastore: Local-05 }  
+    - { student_id: S21, esxi: 200.200.200.246 , datastore: Local-01 }  
+    delegate_to: localhost
