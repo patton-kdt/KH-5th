@@ -2,8 +2,8 @@
 - hosts: localhost
   vars:
     ansible_python_interpreter: /bin/python3
-    vcenter_hostname: "172.16.1.10"
-    vcenter_username: "administrator@vsphere.reca3"
+    vcenter_hostname: "200.200.200.251"
+    vcenter_username: "administrator@vsphere.kh"
     vcenter_password: "VMware1!"
     datacenter_name: "Datacenter"
 
@@ -16,7 +16,7 @@
         validate_certs: no
         datacenter: '{{ datacenter_name }}'
         folder_name: '{{ item }}'
-        parent_folder: "/Datacenter/vm/RECA#3/3.Students"
+        parent_folder: "/Datacenter/vm/3.Students"
         state: present
       register: sub_folder_creation_result
       loop:
@@ -42,32 +42,4 @@
         - S19
         - S20
         - S21
-        - S22
       delegate_to: localhost
-
-
-#changed: [localhost] => (item=S23) => {
-#    "ansible_loop_var": "item",
-#    "changed": true,
-#    "invocation": {
-#        "module_args": {
-#            "datacenter": "Datacenter",
-#            "folder_name": "S23",
-#            "folder_type": "vm",
-#            "hostname": "192.168.3.10",
-#            "parent_folder": "3.Students",
-#            "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
-#            "port": 443,
-#            "proxy_host": null,
-#            "proxy_port": null,
-#            "state": "present",
-#            "username": "administrator@vsphere.reca2",
-#            "validate_certs": false
-#        }
-#    },
-#    "item": "S23",
-#    "result": {
-#        "msg": "Folder 'S23' of type 'vm' under '3.Students' created successfully.",
-#        "path": "/Datacenter/vm/3.Students/S23"
-#    }
-#}
