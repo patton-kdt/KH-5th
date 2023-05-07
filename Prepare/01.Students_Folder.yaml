@@ -16,7 +16,7 @@
         validate_certs: no
         datacenter: '{{ datacenter_name }}'
         folder_name: '{{ item }}'
-        parent_folder: "/Datacenter/vm/3.Students"
+        parent_folder: "3.Students"
         state: present
       register: sub_folder_creation_result
       loop:
@@ -43,3 +43,7 @@
         - S20
         - S21
       delegate_to: localhost
+
+# https://docs.ansible.com/ansible/latest/collections/community/vmware/vcenter_folder_module.html#parameter-parent_folder
+# If user wants to create a folder under ‘/DC0/vm/vm_folder’, this value will be ‘vm_folder’.
+# If user wants to create a folder under ‘/DC0/vm/folder1/folder2’, this value will be ‘folder1/folder2’.
