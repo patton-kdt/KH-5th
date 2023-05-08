@@ -33,7 +33,7 @@
           unit_number: 0
           state: present
           type: iso
-          iso_path: '{{ datastore_name + "\ISO\vyos-rolling-latest.iso" }}'
+          iso_path: '{{ "[" + datastore_name + "]\ISO\vyos-rolling-latest.iso" }}'
       with_items:
       - { vmname: "{{ student_ID + '-Router'}}", guest_id: debian10_64Guest, cpus: 1, memory: 1024,  disk_gb: 10 }
       delegate_to: localhost
