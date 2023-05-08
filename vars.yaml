@@ -1,32 +1,33 @@
 ansible_python_interpreter: /bin/python3
 
-student_ID: "R3-S00"
+student_ID: "S00"
 
-vcenter_hostname: "172.16.1.10"
-vcenter_username: "S00@vclass.reca3"
+vcenter_hostname: "200.200.200.251"
+vcenter_username: "S00@vclass.kh"
 vcenter_password: "VMware1!"
 
 datacenter_name: "Datacenter"
 
-folder_prefix: "Datacenter/vm/RECA#3/3.Students/"
+folder_prefix: "Datacenter/vm/3.Students/"
 
-# S01, S06, S11, S16, S21 --> esxi_host : esxi-01.vclass.reca3
-# S02, S07, S12, S17, S22 --> esxi_host : esxi-02.vclass.reca3
-# S03, S08, S13, S18, S23 --> esxi_host : esxi-03.vclass.reca3
-# S04, S09, S14, S19, S24 --> esxi_host : esxi-04.vclass.reca3
-# S00, S05, S10, S15, S20 --> esxi_host : esxi-05.vclass.reca3
+# S01, S06, S11, S16, S21 --> esxi_host : 200.200.200.246
+# S02, S07, S12, S17, S22 --> esxi_host : 200.200.200.247
+# S03, S08, S13, S18, S23 --> esxi_host : 200.200.200.248
+# S04, S09, S14, S19, S24 --> esxi_host : 200.200.200.249
+# S00, S05, S10, S15, S20 --> esxi_host : 200.200.200.250
 
-esxi_hostname: "esxi-05.vclass.reca3"
+esxi_hostname: "200.200.200.250"
 esxi_password: "VMware1!"
 esxi_username: "root"
 
-public_net: "VM-172.16.1.x"
+public_net: "VM-200.200.200.x"
 private_net: "{{ student_ID + '-Trunk' }}"
 
-datastore_name: "R3-ESXi-05"
+datastore_name: "Local-05"
+
 
 dc_template_name: "Temp-WinSvr2022-ESXi-05"
-dc_snapshot_src_name: "RECA#3"
+dc_snapshot_src_name: "KH4"
 
 esxi_template_name: "Temp-ESXi-05"
 
@@ -34,5 +35,3 @@ sa_esxi_template_name: "Temp-SA-ESXi-05"
 
 vcsa_template_name: "Temp-VCSA-ESXi-05"
 vcsa_snapshot_src_name: "Installed"
-
-sb_esxi_template_name: "Temp-SB-ESXi-05"
