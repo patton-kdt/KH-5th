@@ -7,7 +7,7 @@
 Import-Module ActiveDirectory
 
 ## 주요 변수 설정 
-$dcpath="DC=vclass,DC=reca3"
+$dcpath="DC=vclass,DC=kh"
 $ou="Student"
 $groupname="Students"
 $oupath="OU=" + $ou + "," + $dcpath
@@ -29,5 +29,3 @@ foreach ($i in $count)
   New-AdUser -Name $username -Path $oupath -Enabled $True -AccountPassword (ConvertTo-SecureString "VMware1!" -AsPlainText -force) -passThru  -PasswordNeverExpires 1 
   Add-ADGroupMember -Identity $groupname -Members $username
  }
- 
- 
