@@ -28,6 +28,12 @@
           device_type: vmxnet3
         - name: '{{ private_net }}'
           device_type: vmxnet3
+        cdrom:
+        - controller_number: 0
+          unit_number: 0
+          state: present
+          type: iso
+          iso_path: '{{ datastore_name + "\ISO\vyos-rolling-latest.iso" }}'
       with_items:
       - { vmname: "{{ student_id + '-Router'}}", guest_id: debian10_64Guest, cpus: 1, memory: 1024,  disk_gb: 10 }
       delegate_to: localhost
