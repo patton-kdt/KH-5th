@@ -10,7 +10,7 @@
         password: "{{ vcenter_password }}"
         validate_certs: 'false'
         datacenter: '{{datacenter_name}}'
-        folder: '{{ folder_prefix + student_id }}'
+        folder: '{{ folder_prefix + student_ID }}'
         name: '{{ item.vmname }}'
         state: poweredoff
         guest_id: '{{ item.guest_id }}'
@@ -35,7 +35,7 @@
           type: iso
           iso_path: '{{ datastore_name + "\ISO\vyos-rolling-latest.iso" }}'
       with_items:
-      - { vmname: "{{ student_id + '-Router'}}", guest_id: debian10_64Guest, cpus: 1, memory: 1024,  disk_gb: 10 }
+      - { vmname: "{{ student_ID + '-Router'}}", guest_id: debian10_64Guest, cpus: 1, memory: 1024,  disk_gb: 10 }
       delegate_to: localhost
       register: deploy_vm
 
