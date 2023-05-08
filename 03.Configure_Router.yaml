@@ -11,8 +11,8 @@
         password: '{{ vcenter_password }}'
         validate_certs: 'false'
         datacenter: '{{ datacenter_name }}'
-        folder: '{{ folder_prefix + project_id }}'
-        vm_id: "{{ project_id + '-Router' }}"
+        folder: '{{ folder_prefix + student_ID }}'
+        vm_id: "{{ student_ID + '-Router' }}"
         vm_id_type: vm_name
         vm_username: 'vyos'
         vm_password: 'vyos'
@@ -57,4 +57,3 @@
         timeout: 180
       delegate_to: localhost
       register: shell_command_with_wait_timeout
-
