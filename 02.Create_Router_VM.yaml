@@ -12,7 +12,7 @@
         datacenter: '{{datacenter_name}}'
         folder: '{{ folder_prefix + student_ID }}'
         name: '{{ item.vmname }}'
-        state: poweredoff
+        state: poweredon
         guest_id: '{{ item.guest_id }}'
         esxi_hostname: "{{ esxi_hostname }}"
         hardware:
@@ -38,14 +38,3 @@
       - { vmname: "{{ student_ID + '-Router'}}", guest_id: debian10_64Guest, cpus: 1, memory: 1024,  disk_gb: 10 }
       delegate_to: localhost
       register: deploy_vm
-
-    - name: PowerOn Router VM
-      community.vmware.vmware_guest_powerstate:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
-        validate_certs: 'false'
-        folder: '{{ folder_prefix + student_ID }}'
-        name: "{{ student_ID + '-Router' }}"
-        state: powered-on
-      delegate_to: localhost
