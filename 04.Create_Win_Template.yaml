@@ -37,6 +37,6 @@
           type: iso
           iso_path: '{{ "[" + datastore_name + "]\ISO\ko-kr_windows_server_2022_updated_april_2023_x64_dvd_54c81ef3.iso" }}'
       with_items:
-      - { vmname: "{{ student_ID + '-Win2022-Template'}}", guest_id: windows2022srvNext_64Guest, cpus: 2, memory: 4096,  disk_gb: 90 }
+      - { vmname: "{{ student_ID + '-Win2022-Template'}}", guest_id: windows2019srvNext_64Guest, cpus: 2, memory: 4096,  disk_gb: 90 }
       delegate_to: localhost
       register: deploy_vm
