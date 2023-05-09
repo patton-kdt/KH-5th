@@ -1,3 +1,5 @@
+## https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_module.html
+
 ---
 - hosts: localhost
   vars_files: ./vars.yaml
