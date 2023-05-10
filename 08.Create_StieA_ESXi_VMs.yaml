@@ -3,7 +3,7 @@
   vars_files: ./vars.yaml
 
   tasks: 
-    - name: Create ESXi VMs
+    - name: Create SiteA ESXi VMs
       community.vmware.vmware_guest:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
@@ -12,7 +12,7 @@
         datacenter: '{{datacenter_name}}'
         folder: '{{ folder_prefix + student_ID }}'
         name: '{{ item.vmname }}'
-        state: poweredoff
+        state: poweredon
         guest_id: vmkernel7Guest
         esxi_hostname: "{{ esxi_hostname }}"
         hardware:
@@ -64,7 +64,7 @@
           unit_number: 0
           state: present
           type: iso
-          iso_path: '[R3-ESXi-05]\ISO\VMware-VMvisor-Installer-7.0U3l-21424296.x86_64.iso'
+          iso_path: '{{ "[" + datastore_name + "]\ISO\VMware-VMvisor-Installer-7.0U3l-21424296.x86_64.iso" }}'          
       with_items:
       - {vmname: "{{ student_ID + '-SA-ESXi-01' }}" }
       - {vmname: "{{ student_ID + '-SA-ESXi-02' }}" }
