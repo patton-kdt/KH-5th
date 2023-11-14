@@ -5,7 +5,7 @@
     vcenter_hostname: "200.200.200.251"
     vcenter_username: "administrator@vsphere.kh"
     vcenter_password: "VMware1!"
-    datacenter_name: "Datacenter"
+    datacenter_name: "KH-5th"
 
   tasks: 
     - name: Create a Students folder
@@ -20,7 +20,6 @@
         state: present
       register: sub_folder_creation_result
       loop:
-        - S00
         - S01
         - S02
         - S03
@@ -42,6 +41,9 @@
         - S19
         - S20
         - S21
+        - S22
+        - S23
+        - S24
       delegate_to: localhost
 
 # https://docs.ansible.com/ansible/latest/collections/community/vmware/vcenter_folder_module.html#parameter-parent_folder
