@@ -8,6 +8,27 @@
     datacenter_name: "KH-5th"
 
   tasks:
+
+  - name: Create a snapshot for linked clone
+    community.vmware.vmware_guest_snapshot:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      datacenter: "{{ datacenter_name }}"
+      folder: "/{{ datacenter_name }}/vm/2.Templates"
+      name: "{{ item }}"
+      state: present
+      snapshot_name: for_linkedclone      
+    loop:
+      - IaC-01
+      - IaC-02
+      - IaC-03
+      - IaC-04
+      - IaC-05  
+    delegate_to: localhost
+
+
   - name: Deploy IaC VM from Template
     community.vmware.vmware_guest:
       hostname: "{{ vcenter_hostname }}"
@@ -21,7 +42,9 @@
       esxi_hostname: '{{ item.esxi }}'
       datastore: "{{ item.datastore }}"
       template: "{{ item.source }}"
-    with_items:
+      linked_clone: true
+      snapshot_src: "{{ snapshot_name }}"
+    loop:
     - { student_id: S01, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
     - { student_id: S02, esxi: 200.200.200.247, datastore: Local-khesxi02, source: IaC-02 }  
     - { student_id: S03, esxi: 200.200.200.248, datastore: Local-khesxi03, source: IaC-03 }  
@@ -48,3 +71,22 @@
     - { student_id: S24, esxi: 200.200.200.244, datastore: Local-khesxi04, source: IaC-04 }  
     delegate_to: localhost
  
+
+  - name: Remove a snapshot for linked clone
+    community.vmware.vmware_guest_snapshot:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      datacenter: "{{ datacenter_name }}"
+      folder: "/{{ datacenter_name }}/vm/2.Templates"
+      name: "{{ item }}"
+      state: absent
+      snapshot_name: for_linkedclone      
+    loop:
+      - IaC-01
+      - IaC-02
+      - IaC-03
+      - IaC-04
+      - IaC-05  
+    delegate_to: localhost
