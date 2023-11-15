@@ -7,10 +7,6 @@
     vcenter_password: "VMware1!"
     datacenter_name: "KH-5th"
     source: "IaC-05"
-      - { host: 200.200.200.246, datastore: Local-khesxi01, vm: IaC-01 }
-      - { host: 200.200.200.247, datastore: Local-khesxi02, vm: IaC-02 }
-      - { host: 200.200.200.248, datastore: Local-khesxi03, vm: IaC-03 }
-      - { host: 200.200.200.249, datastore: Local-khesxi04, vm: IaC-04 }
 
   tasks:
   - name: Clone Template VM to each ESXi Hosts
@@ -21,7 +17,7 @@
       validate_certs: no
       name: "{{ item.vm }}"
       datacenter: '{{ datacenter_name }}'
-      folder: "{{ '2.Templates }}"
+      folder: "2.Templates"
       esxi_hostname: '{{ item.host }}'
       datastore: "{{ item.datastore }}"
       template: "{{ source }}"
