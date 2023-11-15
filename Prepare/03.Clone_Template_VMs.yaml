@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  vars:
+    ansible_python_interpreter: /bin/python3
+    vcenter_hostname: "200.200.200.251"
+    vcenter_username: "administrator@vsphere.kh"
+    vcenter_password: "VMware1!"
+    datacenter_name: "KH-5th"
+    source: "IaC-05"
+      - { host: 200.200.200.246, datastore: Local-khesxi01, vm: IaC-01 }
+      - { host: 200.200.200.247, datastore: Local-khesxi02, vm: IaC-02 }
+      - { host: 200.200.200.248, datastore: Local-khesxi03, vm: IaC-03 }
+      - { host: 200.200.200.249, datastore: Local-khesxi04, vm: IaC-04 }
+
+  tasks:
+  - name: Clone Template VM to each ESXi Hosts
+    community.vmware.vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ item.vm }}"
+      datacenter: '{{ datacenter_name }}'
+      folder: "{{ '2.Templates }}"
+      esxi_hostname: '{{ item.host }}'
+      datastore: "{{ item.datastore }}"
+      template: "{{ source }}"
+    loop:
+      - { host: 200.200.200.246, datastore: Local-khesxi01, vm: IaC-01 }
+      - { host: 200.200.200.247, datastore: Local-khesxi02, vm: IaC-02 }
+      - { host: 200.200.200.248, datastore: Local-khesxi03, vm: IaC-03 }
+      - { host: 200.200.200.249, datastore: Local-khesxi04, vm: IaC-04 }
+    delegate_to: localhost
+ 

@@ -22,30 +22,29 @@
       datastore: "{{ item.datastore }}"
       template: "{{ item.source }}"
     with_items:
-    - { student_id: S00, esxi: 200.200.200.250, datastore: Local-khesxi05, source: Win2022-05 }  
-    - { student_id: S01, esxi: 200.200.200.246, datastore: Local-khesxi01, source: Win2022-01 }  
-    - { student_id: S02, esxi: 200.200.200.247, datastore: Local-khesxi02, source: Win2022-02 }  
-    - { student_id: S03, esxi: 200.200.200.248, datastore: Local-khesxi03, source: Win2022-03 }  
-    - { student_id: S04, esxi: 200.200.200.249, datastore: Local-khesxi04, source: Win2022-04 }  
-    - { student_id: S05, esxi: 200.200.200.250, datastore: Local-khesxi05, source: Win2022-05 }  
-    - { student_id: S06, esxi: 200.200.200.246, datastore: Local-khesxi01, source: Win2022-01 }  
-    - { student_id: S07, esxi: 200.200.200.247, datastore: Local-khesxi02, source: Win2022-02 }  
-    - { student_id: S08, esxi: 200.200.200.248, datastore: Local-khesxi03, source: Win2022-03 }  
-    - { student_id: S09, esxi: 200.200.200.249, datastore: Local-khesxi04, source: Win2022-04 }  
-    - { student_id: S10, esxi: 200.200.200.250, datastore: Local-khesxi05, source: Win2022-05 }  
-    - { student_id: S11, esxi: 200.200.200.246, datastore: Local-khesxi01, source: Win2022-01 }  
-    - { student_id: S12, esxi: 200.200.200.247, datastore: Local-khesxi02, source: Win2022-02 }  
-    - { student_id: S13, esxi: 200.200.200.248, datastore: Local-khesxi03, source: Win2022-03 }  
-    - { student_id: S14, esxi: 200.200.200.249, datastore: Local-khesxi04, source: Win2022-04 }  
-    - { student_id: S15, esxi: 200.200.200.250, datastore: Local-khesxi05, source: Win2022-05 }  
-    - { student_id: S16, esxi: 200.200.200.246, datastore: Local-khesxi01, source: Win2022-01 }  
-    - { student_id: S17, esxi: 200.200.200.247, datastore: Local-khesxi02, source: Win2022-02 }  
-    - { student_id: S18, esxi: 200.200.200.248, datastore: Local-khesxi03, source: Win2022-03 }  
-    - { student_id: S19, esxi: 200.200.200.249, datastore: Local-khesxi04, source: Win2022-04 }  
-    - { student_id: S20, esxi: 200.200.200.250, datastore: Local-khesxi05, source: Win2022-05 }  
-    - { student_id: S21, esxi: 200.200.200.246, datastore: Local-khesxi01, source: Win2022-01 }  
-    - { student_id: S22, esxi: 200.200.200.242, datastore: Local-khesxi02, source: Win2022-02 }  
-    - { student_id: S23, esxi: 200.200.200.243, datastore: Local-khesxi03, source: Win2022-03 }  
-    - { student_id: S24, esxi: 200.200.200.244, datastore: Local-khesxi04, source: Win2022-04 }  
+    - { student_id: S01, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
+    - { student_id: S02, esxi: 200.200.200.247, datastore: Local-khesxi02, source: IaC-02 }  
+    - { student_id: S03, esxi: 200.200.200.248, datastore: Local-khesxi03, source: IaC-03 }  
+    - { student_id: S04, esxi: 200.200.200.249, datastore: Local-khesxi04, source: IaC-04 }  
+    - { student_id: S05, esxi: 200.200.200.250, datastore: Local-khesxi05, source: IaC-05 }  
+    - { student_id: S06, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
+    - { student_id: S07, esxi: 200.200.200.247, datastore: Local-khesxi02, source: IaC-02 }  
+    - { student_id: S08, esxi: 200.200.200.248, datastore: Local-khesxi03, source: IaC-03 }  
+    - { student_id: S09, esxi: 200.200.200.249, datastore: Local-khesxi04, source: IaC-04 }  
+    - { student_id: S10, esxi: 200.200.200.250, datastore: Local-khesxi05, source: IaC-05 }  
+    - { student_id: S11, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
+    - { student_id: S12, esxi: 200.200.200.247, datastore: Local-khesxi02, source: IaC-02 }  
+    - { student_id: S13, esxi: 200.200.200.248, datastore: Local-khesxi03, source: IaC-03 }  
+    - { student_id: S14, esxi: 200.200.200.249, datastore: Local-khesxi04, source: IaC-04 }  
+    - { student_id: S15, esxi: 200.200.200.250, datastore: Local-khesxi05, source: IaC-05 }  
+    - { student_id: S16, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
+    - { student_id: S17, esxi: 200.200.200.247, datastore: Local-khesxi02, source: IaC-02 }  
+    - { student_id: S18, esxi: 200.200.200.248, datastore: Local-khesxi03, source: IaC-03 }  
+    - { student_id: S19, esxi: 200.200.200.249, datastore: Local-khesxi04, source: IaC-04 }  
+    - { student_id: S20, esxi: 200.200.200.250, datastore: Local-khesxi05, source: IaC-05 }  
+    - { student_id: S21, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
+    - { student_id: S22, esxi: 200.200.200.242, datastore: Local-khesxi02, source: IaC-02 }  
+    - { student_id: S23, esxi: 200.200.200.243, datastore: Local-khesxi03, source: IaC-03 }  
+    - { student_id: S24, esxi: 200.200.200.244, datastore: Local-khesxi04, source: IaC-04 }  
     delegate_to: localhost
  
