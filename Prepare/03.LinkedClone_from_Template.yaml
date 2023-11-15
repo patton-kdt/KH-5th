@@ -6,6 +6,7 @@
     vcenter_username: "administrator@vsphere.kh"
     vcenter_password: "VMware1!"
     datacenter_name: "KH-5th"
+    snapshot_src: "for_linkedclone"
 
   tasks:
 
@@ -19,7 +20,7 @@
       folder: "/{{ datacenter_name }}/vm/2.Templates"
       name: "{{ item }}"
       state: present
-      snapshot_name: for_linkedclone      
+      snapshot_name: "{{ snapshot_src }}"
     loop:
       - IaC-01
       - IaC-02
@@ -43,7 +44,7 @@
       datastore: "{{ item.datastore }}"
       template: "{{ item.source }}"
       linked_clone: true
-      snapshot_src: "{{ snapshot_name }}"
+      snapshot_src: "{{ snapshot_src }}"
     loop:
     - { student_id: S01, esxi: 200.200.200.246, datastore: Local-khesxi01, source: IaC-01 }  
     - { student_id: S02, esxi: 200.200.200.247, datastore: Local-khesxi02, source: IaC-02 }  
@@ -82,7 +83,7 @@
       folder: "/{{ datacenter_name }}/vm/2.Templates"
       name: "{{ item }}"
       state: absent
-      snapshot_name: for_linkedclone      
+      snapshot_name: "{{ snapshot_src }}"
     loop:
       - IaC-01
       - IaC-02
