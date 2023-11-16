@@ -14,7 +14,7 @@
         datacenter: '{{datacenter_name}}'
         folder: '{{ folder_prefix + student_ID }}'
         name: '{{ item.vmname }}'
-        state: poweredon
+##        state: poweredon
         guest_id: '{{ item.guest_id }}'
         esxi_hostname: "{{ esxi_hostname }}"
         hardware:
