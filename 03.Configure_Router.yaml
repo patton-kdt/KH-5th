@@ -33,7 +33,7 @@
           set interfaces ethernet eth0 ipv6 address no-default-link-local
           set protocols static route 0.0.0.0/0 next-hop 200.200.200.254
 
-          set system name-server 200.200.200.245
+          set system name-server 200.200.200.253
           set service ntp server kr.pool.ntp.org
        
           set interfaces ethernet eth1 vif 10 description 'VLAN 10 - Site A Management'
