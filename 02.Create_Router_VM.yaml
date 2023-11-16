@@ -14,7 +14,7 @@
         datacenter: '{{datacenter_name}}'
         folder: '{{ folder_prefix + student_ID }}'
         name: '{{ item.vmname }}'
-##        state: poweredon
+        state: poweredon
         guest_id: '{{ item.guest_id }}'
         esxi_hostname: "{{ esxi_hostname }}"
         hardware:
@@ -35,7 +35,7 @@
           unit_number: 0
           state: present
           type: iso
-          iso_path: '{{ "[" + datastore_name + "]\ISO\vyos-rolling-202311120024-amd64.iso" }}'
+          iso_path: '{{ "[" + datastore_name + "]\ISO\vyos-1.5-rolling-202311120024-amd64.iso" }}'
       with_items:
       - { vmname: "{{ student_ID + '-Router'}}", guest_id: debian10_64Guest, cpus: 1, memory: 1024,  disk_gb: 10 }
       delegate_to: localhost
