@@ -64,7 +64,7 @@
           unit_number: 0
           state: present
           type: iso
-          iso_path: '{{ "[" + datastore_name + "]\ISO\VMware-VMvisor-Installer-7.0U3l-21424296.x86_64.iso" }}'          
+          iso_path: '{{ "[" + datastore_name + "]\ISO\VMware-VMvisor-Installer-8.0U2-22380479.x86_64.iso" }}'          
       with_items:
       - {vmname: "{{ student_ID + '-SA-ESXi-01' }}" }
       - {vmname: "{{ student_ID + '-SA-ESXi-02' }}" }
