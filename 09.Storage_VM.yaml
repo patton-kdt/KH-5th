@@ -58,6 +58,6 @@
           unit_number: 0
           state: present
           type: iso
-          iso_path: '{{ "[" + datastore_name + "]\ISO\TrueNAS-13.0-U4.iso" }}'
+          iso_path: '{{ "[" + datastore_name + "]\ISO\TrueNAS-13.0-U5.3.iso" }}'
       delegate_to: localhost
       register: deploy_vm
